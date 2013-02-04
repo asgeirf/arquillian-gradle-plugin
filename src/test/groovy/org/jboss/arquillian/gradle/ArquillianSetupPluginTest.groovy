@@ -16,7 +16,7 @@ class ArquillianSetupPluginTest {
     }
 
     @Test
-    public void should_resolve_weld_ee_embedded_container_dependencies() {
+    public void container_should_add_testing_task() {
         project.with {
             apply plugin: 'arquillian-setup'
             repositories {
@@ -28,6 +28,7 @@ class ArquillianSetupPluginTest {
                 containers = ['weld-ee-embedded']
             }
         }
+        project.tasks.getByName('weldEeEmbeddedTest')
     }
 
     @Test(expected = IllegalArgumentException)

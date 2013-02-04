@@ -11,10 +11,12 @@ class JettyContainerConfig extends ContainerConfig {
 
     @Override
     void configure(final Project project) {
+        addRuntimeConfiguration(project)
         project.dependencies {
-            testRuntime "org.jboss.arquillian.container:arquillian-jetty-embedded-7:1.0.0.CR1"
-            testRuntime "org.eclipse.jetty:jetty-webapp:8.1.7.v20120910"
-            testRuntime "org.eclipse.jetty:jetty-plus:8.1.7.v20120910"
+            "${name}Runtime" 'org.jboss.arquillian.container:arquillian-jetty-embedded-7:1.0.0.CR1'
+            "${name}Runtime" 'org.eclipse.jetty:jetty-webapp:8.1.7.v20120910'
+            "${name}Runtime" 'org.eclipse.jetty:jetty-plus:8.1.7.v20120910'
         }
+        addTestTask(project)
     }
 }

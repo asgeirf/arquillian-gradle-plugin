@@ -20,8 +20,7 @@ class BillOfMaterial {
     }
 
     public String resolve(String artifact) {
-        def boms = [this]
-        boms.addAll(importedBoms)
+        List<BillOfMaterial> boms = [this] + importedBoms
         for (BillOfMaterial bom : boms) {
             if (bom.dependencies.contains(artifact)) {
                 logger.debug("Resolving ${artifact} as ${artifact}:${bom.version}")

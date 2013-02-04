@@ -4,7 +4,7 @@ import org.gradle.api.Project
 class WeldEeEmbeddedContainerConfig extends ContainerConfig {
 
     public WeldEeEmbeddedContainerConfig() {
-        super('weld-ee-embedded', 'weldEeEmbedded')
+        super('weld-ee-embedded', 'weldEeEmbedded', 'Weld EE 1.1 Embedded')
     }
 
     @Override

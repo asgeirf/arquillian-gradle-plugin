@@ -17,6 +17,7 @@ class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<Arquilli
     private Project project
 
     public ArquillianPlugin() {
+        addContainer(new JBossAs7ManagedContainerDefinition())
         addContainer(new WeldEeEmbeddedContainerDefinition())
         addContainer(new JettyContainerConfig())
     }

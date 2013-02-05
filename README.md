@@ -9,7 +9,10 @@ To use the Gradle Arquillian plugin, include in your build script:
     apply plugin: 'arquillian'
     
     arquillian {
-        useTestNG = true
-        containers = ['jetty']
-        extensions = ['drone']
+        containers = ['jboss-as7-managed']
+        extensions = ['warp-jsf']
     }
+
+You can now run Arquillian tests through:
+    
+    gradle jBossAs7ManagedTest

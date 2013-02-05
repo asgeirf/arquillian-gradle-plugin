@@ -21,6 +21,7 @@ class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<Arquilli
         addContainer(new WeldSeEmbeddedContainerDefinition())
         addContainer(new WeldEeEmbeddedContainerDefinition())
         addContainer(new JettyContainerConfig())
+        addContainer(new OwbEmbeddedContainerDefinition())
     }
 
     @Override

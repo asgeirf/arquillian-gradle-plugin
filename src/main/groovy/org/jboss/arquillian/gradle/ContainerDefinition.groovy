@@ -3,9 +3,17 @@ package org.jboss.arquillian.gradle
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 
-abstract class ContainerConfig  {
+abstract class ContainerDefinition {
+
+    public static final enum ContainerType {
+        MANAGED,EMBEDDED,REMOTE
+    }
+
+    final ContainerType containerType;
     final String id, name, fullName
-    public ContainerConfig(String id, String name, String fullName = name) {
+
+    public ContainerDefinition(ContainerType containerType, String id, String name, String fullName = name) {
+        this.containerType = containerType
         this.id = id
         this.name = name
         this.fullName = fullName

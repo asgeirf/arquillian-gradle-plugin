@@ -3,10 +3,10 @@ package org.jboss.arquillian.gradle
 import org.gradle.api.Project
 
 
-class JettyContainerConfig extends ContainerConfig {
+class JettyContainerConfig extends ContainerDefinition {
     private static final String JETTY_VERSION = '8.1.7.v20120910'
     public JettyContainerConfig() {
-        super('jetty', 'jetty', "Jetty Embedded ${JETTY_VERSION}")
+        super(ContainerType.EMBEDDED, 'jetty', 'jetty', "Jetty Embedded ${JETTY_VERSION}")
     }
 
     @Override

@@ -1,10 +1,10 @@
 package org.jboss.arquillian.gradle
 import org.gradle.api.Project
 
-class WeldEeEmbeddedContainerConfig extends ContainerConfig {
+class WeldEeEmbeddedContainerDefinition extends ContainerDefinition {
 
-    public WeldEeEmbeddedContainerConfig() {
-        super('weld-ee-embedded', 'weldEeEmbedded', 'Weld EE 1.1 Embedded')
+    public WeldEeEmbeddedContainerDefinition() {
+        super(ContainerType.EMBEDDED, 'weld-ee-embedded', 'weldEeEmbedded', 'Weld EE 1.1 Embedded')
     }
 
     @Override

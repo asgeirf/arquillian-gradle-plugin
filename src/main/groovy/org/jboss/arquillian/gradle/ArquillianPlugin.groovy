@@ -11,13 +11,13 @@ import static org.jboss.arquillian.gradle.BillOfMaterial.ARQUILLIAN_BOM
 class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<ArquillianPluginConvention> {
     private static final Logger logger = Logging.getLogger(ArquillianPlugin)
 
-    private Map<String, ContainerConfig> supportedContainers = new HashMap<String, ContainerConfig>()
+    private Map<String, ContainerDefinition> supportedContainers = new HashMap<String, ContainerDefinition>()
     private Map<String, String> supportedExtensions = new HashMap<String,String>()
 
     private Project project
 
     public ArquillianPlugin() {
-        addContainer(new WeldEeEmbeddedContainerConfig())
+        addContainer(new WeldEeEmbeddedContainerDefinition())
         addContainer(new JettyContainerConfig())
     }
 
@@ -61,7 +61,7 @@ class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<Arquilli
     private void configureExtensions(List<String> extensions) {
     }
 
-    private void addContainer(ContainerConfig containerConfig) {
+    private void addContainer(ContainerDefinition containerConfig) {
         supportedContainers.put(containerConfig.id, containerConfig)
     }
 

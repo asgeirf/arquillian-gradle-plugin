@@ -22,6 +22,7 @@ class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<Arquilli
         addContainer(new WeldEeEmbeddedContainerDefinition())
         addContainer(new JettyContainerConfig())
         addContainer(new OwbEmbeddedContainerDefinition())
+        addExtension(new WarpJsfExtension())
     }
 
     @Override
@@ -36,6 +37,11 @@ class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<Arquilli
         configuration.useTestNG ? configureTestNg() : configureJunit()
         configureContainers(configuration.containers)
         configureExtensions(configuration.extensions)
+        if (configuration.useServletProtocol) {
+            project.dependencies {
+                testRuntime ARQUILLIAN_BOM.resolve('org.jboss.arquillian.protocol:arquillian-protocol-servlet')
+            }
+        }
     }
 
     private void configureJunit() {
@@ -53,7 +59,7 @@ class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<Arquilli
     private void configureContainers(List<String> containers) {
         for (c in containers) {
             if (!supportedContainers.containsKey(c)) {
-                throw new IllegalArgumentException("${c} is not a supported container. Available containers are (" + supportedContainers.values().join(", ") + ")")
+                throw new IllegalArgumentException("${c} is not a supported container. Available containers are (" + supportedContainers.keySet().join(", ") + ")")
             }
             logger.debug("configuring container ${c}")
             supportedContainers.get(c).configure(project)
@@ -62,6 +68,17 @@ class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<Arquilli
     }
 
     private void configureExtensions(List<String> extensions) {
+        for (e in extensions) {
+            if (!supportedExtensions.containsKey(e)) {
+                throw new IllegalArgumentException("${e} is not a supported extension. Available extensions are (" + supportedExtensions.keySet().join(", ") + ")")
+            }
+            logger.debug("configuring extension ${e}")
+            supportedExtensions.get(e).configure(project)
+        }
+    }
+
+    private void addExtension(final ArquillianExtension extension) {
+        supportedExtensions.put(extension.id, extension)
     }
 
     private void addContainer(ContainerDefinition containerConfig) {

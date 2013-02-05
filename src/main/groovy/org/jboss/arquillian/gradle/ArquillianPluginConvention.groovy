@@ -6,6 +6,7 @@ class ArquillianPluginConvention {
     List<String> containers = []
     List<String> extensions = []
     boolean useTestNG = false
+    boolean useServletProtocol = false
 
     ArquillianPluginConvention(ConfigurationHandler<ArquillianPluginConvention> handler) {
         this.handler = handler;

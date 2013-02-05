@@ -6,9 +6,9 @@ import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Before
 import org.junit.Test
 
-class ArquillianSetupPluginTest {
+class ArquillianPluginTest {
 
-    private static final Logger logger = Logging.getLogger(ArquillianSetupPluginTest)
+    private static final Logger logger = Logging.getLogger(ArquillianPluginTest)
     private Project project
     @Before
     public void setup() {
@@ -18,7 +18,7 @@ class ArquillianSetupPluginTest {
     @Test
     public void container_should_add_testing_task() {
         project.with {
-            apply plugin: 'arquillian-setup'
+            apply plugin: 'arquillian'
             repositories {
                 mavenLocal()
                 mavenCentral()
@@ -34,7 +34,7 @@ class ArquillianSetupPluginTest {
     @Test(expected = IllegalArgumentException)
     public void should_fail_on_unknown_container() {
         project.with {
-            apply plugin: 'arquillian-setup'
+            apply plugin: 'arquillian'
             repositories {
                 mavenLocal()
                 mavenCentral()

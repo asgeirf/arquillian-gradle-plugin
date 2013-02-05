@@ -1,13 +1,13 @@
 package org.jboss.arquillian.gradle
 
-class ArquillianSetupPluginConvention {
+class ArquillianPluginConvention {
 
-    private ConfigurationHandler<ArquillianSetupPluginConvention> handler
+    private ConfigurationHandler<ArquillianPluginConvention> handler
     List<String> containers = []
     List<String> extensions = []
     boolean useTestNG = false
 
-    ArquillianSetupPluginConvention(ConfigurationHandler<ArquillianSetupPluginConvention> handler) {
+    ArquillianPluginConvention(ConfigurationHandler<ArquillianPluginConvention> handler) {
         this.handler = handler;
     }
 

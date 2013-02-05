@@ -4,7 +4,7 @@ import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 
 class BillOfMaterial {
-    private static final Logger logger = Logging.getLogger(ArquillianSetupPlugin)
+    private static final Logger logger = Logging.getLogger(ArquillianPlugin)
 
     final String groupId, artifactId, version
     private List<String> dependencies = []

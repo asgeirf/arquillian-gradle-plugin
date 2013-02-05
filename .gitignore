@@ -1,5 +1,5 @@
 build/
 .gradle/1.*
-arquillian-setup-plugin.iml
+arquillian-gradle-plugin.iml
 .idea/
 out/

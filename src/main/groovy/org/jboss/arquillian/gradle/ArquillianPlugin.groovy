@@ -8,15 +8,15 @@ import org.gradle.api.plugins.JavaPlugin
 
 import static org.jboss.arquillian.gradle.BillOfMaterial.ARQUILLIAN_BOM
 
-class ArquillianSetupPlugin implements Plugin<Project>, ConfigurationHandler<ArquillianSetupPluginConvention> {
-    private static final Logger logger = Logging.getLogger(ArquillianSetupPlugin)
+class ArquillianPlugin implements Plugin<Project>, ConfigurationHandler<ArquillianPluginConvention> {
+    private static final Logger logger = Logging.getLogger(ArquillianPlugin)
 
     private Map<String, ContainerConfig> supportedContainers = new HashMap<String, ContainerConfig>()
     private Map<String, String> supportedExtensions = new HashMap<String,String>()
 
     private Project project
 
-    public ArquillianSetupPlugin() {
+    public ArquillianPlugin() {
         addContainer(new WeldEeEmbeddedContainerConfig())
         addContainer(new JettyContainerConfig())
     }
@@ -25,11 +25,11 @@ class ArquillianSetupPlugin implements Plugin<Project>, ConfigurationHandler<Arq
     public void apply(Project project) {
         this.project = project
         project.plugins.apply(JavaPlugin.class)
-        project.convention.plugins.arquillian = new ArquillianSetupPluginConvention(this)
+        project.convention.plugins.arquillian = new ArquillianPluginConvention(this)
     }
 
     @Override
-    void onConfigure(final ArquillianSetupPluginConvention configuration) {
+    void onConfigure(final ArquillianPluginConvention configuration) {
         configuration.useTestNG ? configureTestNg() : configureJunit()
         configureContainers(configuration.containers)
         configureExtensions(configuration.extensions)
